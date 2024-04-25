@@ -1,0 +1,1914 @@
+1. Design a class ‘Complex ‘with data members for real and imaginary part. Provide default
+and Parameterized constructors. Write a program to perform arithmetic operations of
+three complex numbers.
+
+class Complex 
+{
+    public  double real;
+    public  double imaginary;
+
+    // Default constructor
+    public Complex() 
+    {
+        this.real = 0.0;
+        this.imaginary = 0.0;
+    }
+
+    // Parameterized constructor
+    public Complex(double real, double imaginary) 
+    {
+        this.real = real;
+        this.imaginary = imaginary;
+    }
+
+   
+
+    // // Method to add three complex numbers
+    public static Complex add(Complex num1, Complex num2, Complex num3)
+    {
+        
+        Complex res = new Complex();
+        res.real = num1.real + num2.real + num3.real;
+        res.imaginary = num1.imaginary+num2.imaginary+num3.imaginary;
+        return res ;
+    }
+    
+    public static Complex substract(Complex num1, Complex num2, Complex num3)
+    {
+        
+        Complex res = new Complex();
+        res.real = num1.real - num2.real - num3.real;
+        res.imaginary = num1.imaginary-num2.imaginary-num3.imaginary;
+        return res ;
+    }
+    
+    public static Complex multiply(Complex num1, Complex num2, Complex num3)
+    {
+        
+        Complex res = new Complex();
+        res.real = (num1.real*num2.real*num3.real)-(num1.imaginary*num2.imaginary*num3.imaginary);
+        res.imaginary = ( num1.real*num2.imaginary*num3.imaginary ) + ( num1.imaginary*num2.real*num3.real );
+        return res ;
+    }
+
+    
+
+    // // Method to multiply three complex numbers
+    // public static Complex multiply(Complex num1, Complex num2, Complex num3) {
+    //     double newReal = num1.getReal() * num2.getReal() * num3.getReal()
+    //             - num1.getImaginary() * num2.getImaginary() * num3.getImaginary();
+    //     double newImaginary = num1.getReal() * num2.getImaginary() * num3.getImaginary()
+    //             + num1.getImaginary() * num2.getReal() * num3.getReal();
+    //     return new Complex(newReal, newImaginary);
+    // }
+
+    // Method to display complex number
+    public void display() 
+    {
+        if (imaginary >= 0)
+            System.out.println(real + " + " + imaginary + "i");
+        else
+            System.out.println(real + " - " + Math.abs(imaginary) + "i");
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args) 
+    {
+        Complex num1 = new Complex(3, 4);
+        Complex num2 = new Complex(2, -5);
+        Complex num3 = new Complex(-1, 2);
+
+        
+        num1.display();
+        num2.display();
+        num3.display();
+        
+        Complex sum = new Complex();
+        sum = sum.add( num1, num2, num3 );
+        System.out.println("Sum = ");
+        sum.display();
+        
+        Complex difference = new Complex();
+        difference = difference.substract( num1, num2, num3 );
+        System.out.println("Difference = ");
+        difference.display();
+        
+        Complex product = new Complex();
+        product = product.multiply( num1, num2, num3 );
+        System.out.println("Product= ");
+        product.display();
+        
+        
+        
+    
+        // Perform arithmetic operations
+        // Complex sum = Complex.add(num1, num2, num3);
+        // Complex difference = Complex.subtract(num1, num2, num3);
+        // Complex product = Complex.multiply(num1, num2, num3);
+
+        // // Display results
+        // System.out.println("Sum:");
+        // sum.display();
+        // System.out.println("Difference:");
+        // difference.display();
+        // System.out.println("Product:");
+        // product.display();
+    }
+}
+
+2. Create a class called Employee that includes three pieces of information as instance
+variables—a first name (type String), a last name (type String) and a monthly salary
+(double). Your class should have a constructor that initializes the three instance variables.
+Provide a set and a get method for each instance variable. If the monthly salary is not
+positive, set it to 0.0. Write a test application named EmployeeTest that demonstrates
+class Employee’s capabilities. Create two Employee objects and display each object’s
+yearly salary. Then give each Employee a 15% raise and display each Employee’s yearly
+salary again.
+
+class Employee 
+{
+    private String firstName;
+    private String lastName;
+    private double monthlySalary;
+
+    // Default constructor
+    public Employee() {}
+
+    public Employee(String firstName , String lastName,double monthlySalary)
+    {
+        this.firstName = firstName;
+        this.lastName  = lastName;
+        if( monthlySalary > 0 )
+        this.monthlySalary    = monthlySalary;
+        else this.monthlySalary = 0.0;
+    }
+    
+     void setfirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+    
+    void setlastName( String lastName )
+    {
+         this.lastName  = lastName;
+    }
+    
+    void  setsalary( double monthlySalary )
+    {
+       if( monthlySalary > 0 )
+        this.monthlySalary    = monthlySalary;
+        else this.monthlySalary = 0.0;
+    }
+    
+    String getfirstName()
+    {
+        return firstName;
+    }
+    
+    String getlastName()
+    {
+        return lastName;
+    }
+    
+    double getmonthlySalary()
+    {
+        return monthlySalary ;
+    }
+    
+    double getyearlySalary()
+    {
+        return 12*getmonthlySalary();
+    }
+    
+    void display( Employee a , Employee b )
+    {
+        System.out.println("Firstname = "+a.getfirstName()+", Lastname = "+a.getlastName()+", Monthly salary = "+a.getmonthlySalary()+", Yearly salary = "+a.getyearlySalary() );
+        
+        System.out.println("Firstname = "+b.getfirstName()+", Lastname = "+b.getlastName()+", Monthly salary = "+b.getmonthlySalary()+", Yearly salary = "+b.getyearlySalary() );
+        
+    }
+    
+    void salaryRaise( double percentage )
+    {
+        monthlySalary *= ( 1 + percentage/100 );
+    }
+   
+}
+
+public class Main 
+{
+    
+    public static void main(String[] args) 
+    {
+        Employee e1 = new Employee("Rohit","Mali",5000);
+        Employee e2 = new Employee("Saurabh","Isane",6000);
+        
+        Employee temp = new Employee();
+        temp.display(e1,e2);
+        
+        e1.salaryRaise(15);
+        e2.salaryRaise(15);
+        
+        System.out.println("Yearly salary of "+e1.getfirstName()+"= "+e1.getyearlySalary() );
+        
+        System.out.println("Yearly salary of "+e2.getfirstName()+"= "+e2.getyearlySalary() );
+        
+ 
+        
+    }
+}
+
+
+3.Create a class called Invoice that a hardware store might use to represent an invoice for
+an item sold at the store. An Invoice should include four pieces of information as instance
+variables‐a part number(type String),a part description(type String),a quantity of the item
+being purchased (type int) and a price per item (double). Your class should have a
+constructor that initializes the four instance variables. Provide a set and a get method for
+each instance variable. In addition, provide a method named getInvoice Amount that
+calculates the invoice amount (i.e., multiplies the quantity by the price per item), then
+returns the amount as a double value. If the quantity is not positive, it should be set to 0.
+If the price per item is not positive, it should be set to 0.0. Write a test application named
+InvoiceTest that demonstrates class Invoice’s capabilities.
+
+class Stack 
+{
+    private int[] stackArray;
+    private int top;
+    private int maxSize;
+
+    // Constructor
+    public Stack(int size)
+    {
+        maxSize = size;
+        stackArray = new int[maxSize];
+        top = -1;
+    }
+
+    // Push operation
+    public void push(int value) 
+    {
+        try
+        {
+            if (top == maxSize - 1) 
+            {
+                throw new OverflowException("Stack Overflow: Cannot push element, stack is full.");
+            }
+            
+            stackArray[++top] = value;
+            System.out.println("Pushed " + value + " to the stack.");
+            
+        } catch (OverflowException e) 
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Pop operation
+    public int pop() 
+    {
+        try
+        {
+            if (top == -1) 
+            {
+                throw new UnderflowException("Stack Underflow: Cannot pop element, stack is empty.");
+            }
+            
+            int poppedValue = stackArray[top--];
+            System.out.println("Popped " + poppedValue + " from the stack.");
+            return poppedValue;
+        } catch (UnderflowException e) 
+        {
+            System.out.println(e.getMessage());
+            return -1; // Return a default value indicating failure
+        }
+    }
+
+    // Custom exception for Stack Overflow
+    class OverflowException extends Exception 
+    {
+        public OverflowException(String message) 
+        {
+            super(message);
+        }
+    }
+
+    // Custom exception for Stack Underflow
+    class UnderflowException extends Exception 
+    {
+        public UnderflowException(String message) 
+        {
+            super(message);
+        }
+    }
+
+    // Method to display the stack contents
+    public void displayStack()
+    {
+        if (top == -1) 
+        {
+            System.out.println("Stack is empty.");
+            return;
+        }
+        System.out.print("Stack: ");
+        for (int i = 0; i <= top; i++) 
+        {
+            System.out.print(stackArray[i] + " ");
+        }
+        System.out.println();
+    }
+}
+
+// Example usage
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Stack stack = new Stack(5);
+        
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+        stack.push(50);
+        stack.push(60); // This should trigger a stack overflow
+        
+        stack.displayStack();
+
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        stack.pop(); // This should trigger a stack underflow
+        
+        stack.displayStack();
+    }
+}
+
+
+4. Create a class called Date that includes three pieces of information as instance
+variables—a month (typeint), a day (typeint) and a year (typeint). Your class should have
+a constructor that initializes the three instance variables and assumes that the values
+provided are correct. Provide a set and a get method for each instance variable. Provide a
+method displayDate that displays the month, day and year separated by forward
+slashes(/). Write a test application named DateTest that demonstrates classDate’s
+capabilities. Perform Validation of Date
+
+
+class Date
+{
+   
+   private int day;
+   private int month;
+   private int year;
+   private int flag = 0 ;
+   
+    public Date() {};
+   
+   public Date( int day , int month , int year )
+   {
+        this.day = day ;
+        this.month = month ;
+        this.year =year;
+   }
+   
+   //setMethods
+    void setday(int day)
+    {
+        if( day>=1 && day<32 )
+       this.day = day ;
+       else 
+       {
+           flag = 1 ;
+           System.out.println("Please enter valid day");
+       }
+    }
+    
+     void  setmonth(int month )
+    {
+        if( month>=1 && month<13 )
+        this.month = month ;
+        else
+        {
+            System.out.println("Please enter valid month");
+            flag = 1 ;
+        }
+    }
+    
+    void  setyear( int year)
+    {
+          this.year =year;
+    }
+    
+   
+    
+    // getMethods
+     int getday()
+    {
+        return day;
+    }
+    
+      int getmonth()
+    {
+        return month;
+    }
+    
+     int getyear()
+    {
+        return year;
+    }
+    
+   
+    
+    void displayDate( )
+    {   
+        if( flag ==1 ) 
+        {
+            System.out.println("Invalid input of data ");
+           return;
+        }
+        System.out.println("Date = "+getmonth()+"/"+getday()+"/"+getyear() );
+    }
+}
+
+public class DateTest 
+{
+    public static void main(String[] args) 
+    {
+        Date d = new Date();
+        d.setday(41);
+        d.setmonth(20);
+        d.setyear(2004);
+        d.displayDate();
+    }
+}
+
+
+5. Create a super class called Car. The Car class has the following fields and methods. ◦int
+speed; ◦double regularPrice; ◦String color; ◦double getSalePrice();
+a. Create a sub class of Car class and name it as Truck. The Truck class has the
+following fields and methods. ◦int weight;
+◦doublegetSalePrice();//Ifweight>2000,10%discount.Otherwise,20%discount
+b. Create a subclass of Car class and name it as Ford. The Ford class has the
+following fields and methods ◦int year; ◦int manufacturerDiscount;
+◦doublegetSalePrice();//FromthesalepricecomputedfromCarclass,subtractthemanuf
+acturerDiscount.
+c. Create a subclass of Car class and name it as Sedan. The Sedan class has the
+following fields and methods. ◦int length;
+◦doublegetSalePrice();//Iflength>20feet,5%discount,Otherwise,10%discount.
+
+
+// This code is running
+// Super class Car
+class Car {
+    int speed;
+    double regularPrice;
+    String color;
+
+    // Constructor
+    public Car(int speed, double regularPrice, String color) {
+        this.speed = speed;
+        this.regularPrice = regularPrice;
+        this.color = color;
+    }
+
+    // Method to calculate sale price
+    public double getSalePrice() {
+        return regularPrice; // Default sale price
+    }
+}
+
+// Subclass Truck
+class Truck extends Car {
+    int weight;
+
+    // Constructor
+    public Truck(int speed, double regularPrice, String color, int weight) {
+        super(speed, regularPrice, color);
+        this.weight = weight;
+    }
+
+    // Override getSalePrice method to apply discount based on weight
+    @Override
+    public double getSalePrice() {
+        if (weight > 2000) {
+            return regularPrice * 0.9; // 10% discount
+        } else {
+            return regularPrice * 0.8; // 20% discount
+        }
+    }
+}
+
+// Subclass Ford
+class Ford extends Car {
+    int year;
+    int manufacturerDiscount;
+
+    // Constructor
+    public Ford(int speed, double regularPrice, String color, int year, int manufacturerDiscount) {
+        super(speed, regularPrice, color);
+        this.year = year;
+        this.manufacturerDiscount = manufacturerDiscount;
+    }
+
+    // Override getSalePrice method to apply manufacturer discount
+    @Override
+    public double getSalePrice() {
+        return super.getSalePrice() - manufacturerDiscount;
+    }
+}
+
+// Subclass Sedan
+class Sedan extends Car {
+    int length;
+
+    // Constructor
+    public Sedan(int speed, double regularPrice, String color, int length) {
+        super(speed, regularPrice, color);
+        this.length = length;
+    }
+
+    // Override getSalePrice method to apply discount based on length
+    @Override
+    public double getSalePrice() {
+        if (length > 20) {
+            return super.getSalePrice() * 0.95; // 5% discount
+        } else {
+            return super.getSalePrice() * 0.9; // 10% discount
+        }
+    }
+}
+
+// Main class for testing
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Truck(60, 20000, "Red", 2500);
+        Car car2 = new Ford(70, 30000, "Blue", 2018, 5000);
+        Car car3 = new Sedan(80, 25000, "Black", 18);
+
+        // Display sale prices
+        System.out.println("Sale price of truck: $" + car1.getSalePrice());
+        System.out.println("Sale price of Ford: $" + car2.getSalePrice());
+        System.out.println("Sale price of Sedan: $" + car3.getSalePrice());
+    }
+}
+
+
+6.Write a program to create a class named shape. In this class we have three sub classes
+circle, triangle and square each class has two member function named Area () and
+Perimeter (). Create these using polymorphism concepts.
+
+import java.lang.Math;
+class Shape
+{
+   public double Area()
+   {
+       return 0.0;
+   }
+   
+   public double Perimeter()
+   {
+       return 0.0;
+   }
+   
+   public void display(){};
+}
+
+class Triangle extends Shape
+{
+    private double s1;
+    private double s2;
+    private double s3;
+    
+    Triangle( double s1,double s2, double s3 )
+    {
+        this.s1= s1;
+        this.s2=s2;
+        this.s3=s3;
+    }
+    
+      public double Area()
+   {   
+        double s = (s1 + s2 + s3) / 2;
+        return Math.sqrt(s * (s - s1) * (s - s2) * (s - s3));
+   }
+   
+   public double Perimeter()
+   {
+       return (  s1+s2+s3  );
+   }
+    @Override
+   public void display()
+   {
+       System.out.println("Triangle Area      = "+Area());
+       System.out.println("Triangle Perimeter = "+Perimeter() );
+   }
+}
+
+class Square extends Shape
+{
+    private double s;
+   
+    
+    Square( double s )
+    {
+        this.s= s;
+    }
+    
+      public double Area()
+   {   
+      return (s*s);
+   }
+   
+   public double Perimeter()
+   {
+       return ( 4*s );
+   }
+     @Override
+   public void display()
+   {
+       System.out.println("Square Area      = "+Area());
+       System.out.println("Square Perimeter = "+Perimeter() );
+   }
+}
+
+class Circle extends Shape
+{
+    private double r;
+   
+    
+    Circle( double r )
+    {
+        this.r= r;
+    }
+    
+      public double Area()
+   {   
+      return (Math.PI*r*r);
+   }
+   
+   public double Perimeter()
+   {
+       return ( 2*Math.PI*r );
+   }
+     @Override
+   public void display()
+   {
+       System.out.println("Square Area      = "+Area());
+       System.out.println("Square Perimeter = "+Perimeter() );
+       System.out.println("\n");
+       
+   }
+}
+
+
+public class Main 
+{
+    
+    public static void main(String[] args) 
+    {
+       Triangle t = new Triangle(3,3,3);
+       t.display();
+       
+       Square s = new Square(4);
+       s.display();
+       
+       Circle c = new Circle(5);
+       c.display();
+           
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+9. Design and develop inheritance for a given case study, identify objects and relationships
+and implement inheritance wherever applicable. Employee class has Emp_name,
+Emp_id, Address, Mail_id, and Mobile_no as members. Inherit the classes: Programmer,
+Team Lead, Assistant Project Manager and Project Manager from employee class. Add
+Basic Pay (BP) as the member of all the inherited classes with 97% of BP as DA, 10 % of
+BP as HRA, 12% of BP as PF, 0.1% of BP for staff club fund. Generate pay slips for the
+employees with their gross and net salary.
+
+// Super class Car
+ class Employee
+{
+    String Emp_name;
+    String Emp_id;
+    String Address;
+    String Mail_id;
+    String Mobile_no;
+    double basic_pay;
+
+    // Constructor
+    public Employee(  String Emp_name,String Emp_id,String Address,String Mail_id,
+    String Mobile_no , double basic_pay )
+    {
+        this.Emp_name=Emp_name;
+        this.Emp_id = Emp_id;
+        this.Address=Address;
+        this.Mail_id = Mail_id;
+        this.Mobile_no = Mobile_no;
+        this.basic_pay = basic_pay;
+    }
+    
+    public  void generatePaySlip()
+    {
+
+        double da = 0.97*basic_pay;
+        double hra = 0.1*basic_pay;
+        double pf  = 0.12*basic_pay;
+        double staff_club_fund = 0.001*basic_pay;
+        
+        double gross_salary = basic_pay + da+hra;
+        double net_salary   = gross_salary - pf - staff_club_fund;
+        
+        System.out.println("Employee Name = " + Emp_name);
+          System.out.println("Employee Id = " + Emp_id);
+            System.out.println("Gross Salary = " + gross_salary);
+              System.out.println("Net Salary = " +net_salary);
+    }
+
+   
+}
+class Programmer extends Employee
+{
+   public Programmer(  String Emp_name,String Emp_id,String Address,String Mail_id,
+    String Mobile_no , double basic_pay )
+    {
+        super( Emp_name , Emp_id , Address , Mail_id ,Mobile_no ,basic_pay  );
+    }
+}
+class TeamLead extends Employee
+{
+    public TeamLead(  String Emp_name,String Emp_id,String Address,String Mail_id,
+    String Mobile_no , double basic_pay)
+    {
+        super( Emp_name , Emp_id , Address , Mail_id ,Mobile_no ,basic_pay );
+    }
+}
+class AssistantProjectManager extends Employee
+{
+    public  AssistantProjectManager(  String Emp_name,String Emp_id,String Address,String Mail_id,
+    String Mobile_no , double basic_pay )
+    {
+        super( Emp_name , Emp_id , Address , Mail_id ,Mobile_no ,basic_pay);
+    }
+}
+class ProjectManager extends Employee
+{
+    public ProjectManager(  String Emp_name,String Emp_id,String Address,String Mail_id,
+    String Mobile_no , double basic_pay )
+    {
+        super( Emp_name , Emp_id , Address , Mail_id ,Mobile_no ,basic_pay );
+    }
+}
+
+
+
+// Main class for testing
+public class Main
+{
+    public static void main(String[] args) 
+    {
+        Programmer p = new Programmer("Rohit","10","abc","abc@gmail.com","7249721249",5000);
+        p.generatePaySlip();
+        
+        TeamLead q = new TeamLead("Saurabh","11","def","abc@gmail.com","1234512367",7000);
+        q.generatePaySlip();
+        
+        AssistantProjectManager r = new AssistantProjectManager("Omkar","12","ghf","abc@gmail.com","7845123698",9000);
+        r.generatePaySlip();
+        
+        ProjectManager s = new ProjectManager("Abhishek","13","par","abc@gmail.com","9632587412",12000);
+        s.generatePaySlip();
+    }
+}
+
+// GPT 
+
+public class Employee {
+    private String empName;
+    private String empId;
+    private String address;
+    private String mailId;
+    private String mobileNo;
+    private double basicPay;
+
+    public Employee(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        this.empName = empName;
+        this.empId = empId;
+        this.address = address;
+        this.mailId = mailId;
+        this.mobileNo = mobileNo;
+        if (basicPay >= 0) {
+            this.basicPay = basicPay;
+        } else {
+            throw new IllegalArgumentException("Basic pay cannot be negative");
+        }
+    }
+
+    public void generatePaySlip() {
+        double da = 0.97 * basicPay;
+        double hra = 0.1 * basicPay;
+        double pf = 0.12 * basicPay;
+        double staffClubFund = 0.001 * basicPay;
+
+        double grossSalary = basicPay + da + hra;
+        double netSalary = grossSalary - pf - staffClubFund;
+
+        System.out.println("Employee Name: " + empName);
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Gross Salary: " + grossSalary);
+        System.out.println("Net Salary: " + netSalary);
+    }
+}
+
+class Programmer extends Employee {
+    public Programmer(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        super(empName, empId, address, mailId, mobileNo, basicPay);
+    }
+}
+
+class TeamLead extends Employee {
+    public TeamLead(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        super(empName, empId, address, mailId, mobileNo, basicPay);
+    }
+}
+
+class AssistantProjectManager extends Employee {
+    public AssistantProjectManager(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        super(empName, empId, address, mailId, mobileNo, basicPay);
+    }
+}
+
+class ProjectManager extends Employee {
+    public ProjectManager(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        super(empName, empId, address, mailId, mobileNo, basicPay);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Programmer p = new Programmer("Rohit", "10", "abc", "abc@gmail.com", "7249721249", 5000);
+        p.generatePaySlip();
+
+        TeamLead q = new TeamLead("Saurabh", "11", "def", "abc@gmail.com", "1234512367", 7000);
+        q.generatePaySlip();
+
+        AssistantProjectManager r = new AssistantProjectManager("Omkar", "12", "ghf", "abc@gmail.com", "7845123698", 9000);
+        r.generatePaySlip();
+
+        ProjectManager s = new ProjectManager("Abhishek", "13", "par", "abc@gmail.com", "9632587412", 12000);
+        s.generatePaySlip();
+    }
+}
+
+
+10. Design a base class shape with two double type values and member functions to input the
+data and compute_area() for calculating area of shape. Derive two classes: triangle and
+rectangle. Make compute_area() as abstract function and redefine this function in the
+derived class to suit their requirements. Write a program that accepts dimensions of
+triangle/rectangle and display calculated area. Implement dynamic binding for given case
+study.
+
+import java.util.Scanner;
+ abstract class Shape
+{
+    double dimension1;
+    double dimension2;
+    abstract void compute_area();
+    
+    void inputDimensions(  )
+        {
+            Scanner sc = new Scanner( System.in );
+            System.out.println("Enter the dimension1 = ");
+            dimension1 = sc.nextDouble();
+            System.out.println("Enter the dimension2 = ");
+            dimension2 = sc.nextDouble();
+        }
+   
+}
+
+class Triangle extends Shape 
+{
+ 
+        void compute_area()
+        {
+            double area = 0.5*dimension1*dimension2;
+            System.out.println("Area of trianle = "+area);
+        }
+}
+
+class Rectangle extends Shape 
+{
+    void compute_area()
+        {
+            double area = dimension1*dimension2;
+            System.out.println("Area of trianle = "+area);
+        }
+}
+
+public class Main
+{
+    public static void main(String[] args) 
+    {
+        // Shape shape = new Triangle();
+        // shape.inputDimensions();
+        // shape.compute_area();
+        
+         Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose shape:");
+        System.out.println("1. Triangle");
+        System.out.println("2. Rectangle");
+        System.out.print("Enter choice: ");
+        int choice = scanner.nextInt();
+
+        Shape shape;
+        switch (choice) {
+            case 1:
+                shape = new Triangle();
+                break;
+            case 2:
+                shape = new Rectangle();
+                break;
+            default:
+                System.out.println("Invalid choice");
+                return;
+    }
+}
+
+
+11. Design a class named weather report that holds a daily weather report with data members
+day_of_month, hightemp, lowtemp, amount_rain and amount_snow. Use different types
+of constructors to initialize the objects. Write a program to generate monthly report that
+displays average of each attribute.
+
+import java.util.*;
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+class WeatherReport 
+{
+    public int dayOfMonth;
+    public double highTemp;
+    public double lowTemp;
+    public double amountRain;
+    public double amountSnow;
+
+    // Default constructor
+    public WeatherReport() 
+    {
+        this.dayOfMonth = 1;
+        this.highTemp = 0.0;
+        this.lowTemp = 0.0;
+        this.amountRain = 0.0;
+        this.amountSnow = 0.0;
+    }
+
+    // Parameterized constructor
+    public WeatherReport(int dayOfMonth, double highTemp, double lowTemp, double amountRain, double amountSnow) 
+    {
+        this.dayOfMonth = dayOfMonth;
+        this.highTemp = highTemp;
+        this.lowTemp = lowTemp;
+        this.amountRain = amountRain;
+        this.amountSnow = amountSnow;
+    }
+
+    // Method to get the day of the month
+    public int getDayOfMonth() 
+    {
+        return dayOfMonth;
+    }
+
+    // Method to calculate and return the average of all attributes
+    public static WeatherReport calculateMonthlyAverage(List<WeatherReport> monthlyReports) 
+    {
+        double avgHighTemp = 0.0;
+        double avgLowTemp = 0.0;
+        double avgAmountRain = 0.0;
+        double avgAmountSnow = 0.0;
+
+        int numDays = monthlyReports.size();
+
+        for (WeatherReport report : monthlyReports) {
+            avgHighTemp += report.highTemp;
+            avgLowTemp += report.lowTemp;
+            avgAmountRain += report.amountRain;
+            avgAmountSnow += report.amountSnow;
+        }
+
+        avgHighTemp /= numDays;
+        avgLowTemp /= numDays;
+        avgAmountRain /= nupmDays;
+        avgAmountSnow /= numDays;
+
+        return new WeatherReport(-1, avgHighTemp, avgLowTemp, avgAmountRain, avgAmountSnow);
+    }
+}
+
+public class MonthlyWeatherReport {
+    public static void main(String[] args) {
+        // Creating a list to hold daily weather reports for a month
+        List<WeatherReport> monthlyReports = new ArrayList<>();
+
+        // Adding some sample data for demonstration
+        monthlyReports.add(new WeatherReport(1, 25.0, 15.0, 0.1, 0.0));
+        monthlyReports.add(new WeatherReport(2, 26.0, 16.0, 0.0, 0.0));
+        monthlyReports.add(new WeatherReport(3, 24.0, 14.0, 0.2, 0.0));
+        // Add more reports as needed...
+
+        // Calculating the monthly average
+        WeatherReport monthlyAverage = WeatherReport.calculateMonthlyAverage(monthlyReports);
+
+        // Displaying the monthly average
+        System.out.println("Monthly Average Weather Report:");
+        System.out.println("Average High Temperature: " + monthlyAverage.highTemp);
+        System.out.println("Average Low Temperature: " + monthlyAverage.lowTemp);
+        System.out.println("Average Amount of Rain: " + monthlyAverage.amountRain);
+        System.out.println("Average Amount of Snow: " + monthlyAverage.amountSnow);
+    }
+}
+
+
+12. Identify commonalities and differences between Publication, Book and Magazine classes.
+Title, Price, Copies are common instance variables and saleCopy is common method. The
+differences are, Bookclass has author and orderCopies(). Magazine Class has methods
+orderQty, Current issue, receiveissue().Write a program to find how many copies of the
+given books are ordered and display total sale of publication.
+
+class Publication 
+{
+    String title;
+    double price;
+    int copies;
+
+    Publication(String title, double price, int copies)
+    {
+        this.title = title;
+        this.price = price;
+        this.copies = copies;
+    }
+
+    double saleCopy(int quantity) 
+    {
+        if (quantity <= copies) {
+            copies -= quantity;
+            return quantity * price;
+        } else 
+        {
+            System.out.println("Insufficient copies available for sale.");
+            return 0;
+        }
+    }
+}
+
+class Book extends Publication 
+{
+    String author;
+
+    Book(String title, double price, int copies, String author) {
+        super(title, price, copies);
+        this.author = author;
+    }
+
+    void orderCopies( int quantity ) // dukkan madhe anat ahe.
+    {
+        copies += quantity;
+        System.out.println(quantity + " copies of " + title + " ordered.");
+    }
+}
+
+class Magazine extends Publication
+{
+    int currentIssue;
+
+    Magazine(String title, double price, int copies, int currentIssue) 
+    {
+        super(title, price, copies);
+        this.currentIssue = currentIssue;
+    }
+
+    void orderQty(int quantity) // order quantity of publications
+    {
+        copies += quantity;
+        System.out.println(quantity + " copies of " + title + " ordered.");
+    }
+
+    void receiveIssue(int newIssue) 
+    {
+        currentIssue += newIssue;
+        System.out.println("Received new issue of " + title + ": Issue " + newIssue);
+    }
+}
+
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        Book book1 = new Book("Java Programming", 20.0, 100, "John Doe");
+        Magazine magazine1 = new Magazine("Tech Today", 5.0, 200, 25);
+
+        // Order additional copies
+        book1.orderCopies(50);
+        magazine1.orderQty(100);
+
+        // Sale of copies
+        double totalSale = book1.saleCopy(30) + magazine1.saleCopy(80);
+        System.out.println("Total sale amount: $" + totalSale);
+    }
+}
+
+
+13. Design and develop a context for given case study and implement an interface for
+Vehicles Consider the example of vehicles like bicycle, car, and bike. All Vehicles have
+common functionalities such as Gear Change, Speed up and apply breaks. Make an
+interface and put all these common functionalities. Bicycle, Bike, Car classes should be
+implemented for all these functionalities in their own class in their own way
+
+// Define the Vehicle interface
+interface Vehicle
+{
+    void changeGear(int newGear);
+    void speedUp(int increment);
+    void applyBrakes(int decrement);
+}
+
+// Bicycle class implementing Vehicle interface
+class Bicycle implements Vehicle 
+{
+    private int gear;
+    private int speed;
+
+    @Override
+    public void changeGear(int newGear) {
+        gear = newGear;
+        System.out.println("Bicycle's gear is changed to: " + gear);
+    }
+
+    @Override
+    public void speedUp(int increment) {
+        speed += increment;
+        System.out.println("Bicycle's speed increased by " + increment + ". Current speed: " + speed);
+    }
+
+    @Override
+    public void applyBrakes(int decrement) {
+        speed -= decrement;
+        System.out.println("Bicycle's speed decreased by " + decrement + ". Current speed: " + speed);
+    }
+}
+
+// Bike class implementing Vehicle interface
+class Bike implements Vehicle {
+    private int gear;
+    private int speed;
+
+    @Override
+    public void changeGear(int newGear) {
+        gear = newGear;
+        System.out.println("Bike's gear is changed to: " + gear);
+    }
+
+    @Override
+    public void speedUp(int increment) {
+        speed += increment;
+        System.out.println("Bike's speed increased by " + increment + ". Current speed: " + speed);
+    }
+
+    @Override
+    public void applyBrakes(int decrement) {
+        speed -= decrement;
+        System.out.println("Bike's speed decreased by " + decrement + ". Current speed: " + speed);
+    }
+}
+
+// Car class implementing Vehicle interface
+class Car implements Vehicle {
+    private int gear;
+    private int speed;
+
+    @Override
+    public void changeGear(int newGear) {
+        gear = newGear;
+        System.out.println("Car's gear is changed to: " + gear);
+    }
+
+    @Override
+    public void speedUp(int increment) {
+        speed += increment;
+        System.out.println("Car's speed increased by " + increment + ". Current speed: " + speed);
+    }
+
+    @Override
+    public void applyBrakes(int decrement) {
+        speed -= decrement;
+        System.out.println("Car's speed decreased by " + decrement + ". Current speed: " + speed);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) 
+    {
+        // Example usage
+        Vehicle bicycle = new Bicycle();
+        bicycle.changeGear(1);
+        bicycle.speedUp(10);
+        bicycle.applyBrakes(5);
+
+        Vehicle bike = new Bike();
+        bike.changeGear(2);
+        bike.speedUp(20);
+        bike.applyBrakes(8);
+
+        Vehicle car = new Car();
+        car.changeGear(3);
+        car.speedUp(30);
+        car.applyBrakes(12);
+    }
+}
+
+14. Design a Base class STACK and Handle runtime anomalies like Overflow when the stack
+is full and underflow when the stack is empty. Display error codes and messages by using
+appropriate try and catch block to handle the exceptions thrown
+
+class Stack {
+    private int[] stackArray;
+    private int top;
+    private int maxSize;
+
+    // Constructor
+    public Stack(int size) {
+        maxSize = size;
+        stackArray = new int[maxSize];
+        top = -1;
+    }
+
+    // Push operation
+    public void push(int value) {
+        try {
+            if (top == maxSize - 1) {
+                throw new OverflowException("Stack Overflow: Cannot push element, stack is full.");
+            }
+            stackArray[++top] = value;
+            System.out.println("Pushed " + value + " to the stack.");
+        } catch (OverflowException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Pop operation
+    public int pop() {
+        try {
+            if (top == -1) {
+                throw new UnderflowException("Stack Underflow: Cannot pop element, stack is empty.");
+            }
+            int poppedValue = stackArray[top--];
+            System.out.println("Popped " + poppedValue + " from the stack.");
+            return poppedValue;
+        } catch (UnderflowException e) {
+            System.out.println(e.getMessage());
+            return -1; // Return a default value indicating failure
+        }
+    }
+
+    // Custom exception for Stack Overflow
+    class OverflowException extends Exception {
+        public OverflowException(String message) {
+            super(message);
+        }
+    }
+
+    // Custom exception for Stack Underflow
+    class UnderflowException extends Exception {
+        public UnderflowException(String message) {
+            super(message);
+        }
+    }
+
+    // Method to display the stack contents
+    public void displayStack() {
+        if (top == -1) {
+            System.out.println("Stack is empty.");
+            return;
+        }
+        System.out.print("Stack: ");
+        for (int i = 0; i <= top; i++) {
+            System.out.print(stackArray[i] + " ");
+        }
+        System.out.println();
+    }
+}
+
+// Example usage
+public class Main {
+    public static void main(String[] args) {
+        Stack stack = new Stack(5);
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+        stack.push(50);
+        stack.push(60); // This should trigger a stack overflow
+        stack.displayStack();
+
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        stack.pop(); // This should trigger a stack underflow
+        stack.displayStack();
+    }
+}
+
+
+
+15. Implement a program to handle Arithmetic exceptions, Array Index Out Of Bounds. The
+user enters two numbers Num1 and Num2. The division of Num1 and Num2 is displayed.
+If Num1 and Num2 were not integers, the program would throw a Number Format
+Exception. If Num2 were zero, the program would throw an Arithmetic Exception.
+Display the exception.
+
+// A Java program to demonstrate that we needed
+// multiple catch blocks for multiple exceptions
+// prior to Java 7
+
+import java.util.Scanner;
+public class Test
+{
+	public static void main(String args[])
+	{
+	    System.out.println("Check the given number is factor of 99 or not \n");
+	    
+	   
+	    System.out.println("Enter the string = ");
+		Scanner scn = new Scanner(System.in);
+		try
+		{
+			int n = Integer.parseInt(scn.nextLine());
+		
+			if ( 99%n == 0)
+				System.out.println(n + " is a factor of 99");
+				else System.out.println(n+" is not factor of 99 ");
+		}
+		catch (ArithmeticException ex)
+		{
+			System.out.println("Arithmetic " + ex);
+		}
+		catch (NumberFormatException ex)
+		{
+			System.out.println("Number Format Exception " + ex);
+		}
+		
+	   
+	   
+	   System.out.println("\n");
+	   int[] arr = {1,2,3,4,5};
+       try
+       {
+           System.out.println(arr[5]);
+       }
+       catch( ArrayIndexOutOfBoundsException e )
+       {
+            e.printStackTrace();
+       }      
+	}
+}
+
+
+/*
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.io.*;
+import java.lang;
+
+class HelloWorld 
+{
+    public static void main(String[] args) 
+    {
+       Scanner sc = new Scanner( System.in );
+       int a ; 
+       int b ;
+       System.out.println("Enter value of a = ");
+       a = sc.nextInt();
+       System.out.println("Enter value of b = ");
+       b = sc.nextInt();
+       
+       try
+       {
+           System.out.println("Division = "+(a/b));
+       }
+       catch( ArithmeticException e )
+       {
+          e.printStackTrace();
+       }
+       
+       int[] arr = {1,2,3,4,5};
+       try
+       {
+           System.out.println(arr[5]);
+       }
+       catch( ArrayIndexOutOfBoundsException e )
+       {
+            e.printStackTrace();
+       }      
+       
+       
+    }
+}
+*/
+
+17.
+
+class Animal {
+    protected String name;
+
+    // Constructor
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    // Method to get animal information
+    public String toString() {
+        return "Animal: Animal [name=\"" + name + "\"]";
+    }
+}
+
+class Mammal extends Animal {
+    // Constructor
+    public Mammal(String name) {
+        super(name);
+    }
+
+    // Method to get mammal information
+    public String toString() {
+        return "Mammal: Mammal[" + super.toString() + "]";
+    }
+}
+
+class Cat extends Mammal {
+    // Constructor
+    public Cat(String name) {
+        super(name);
+    }
+
+    // Method to make the cat meow
+    public void greets() {
+        System.out.println("Meow");
+    }
+
+    // Method to get cat information
+    public String toString() {
+        return "Cat: Cat[" + super.toString() + "]";
+    }
+}
+
+class Dog extends Mammal {
+    // Constructor
+    public Dog(String name) {
+        super(name);
+    }
+
+    // Method to make the dog woof
+    public void greets() {
+        System.out.println("Woof");
+    }
+
+    // Method to make the dog greet another dog
+    public void greets(Dog other) {
+        System.out.println("Woooof");
+    }
+
+    // Method to get dog information
+    public String toString() {
+        return "Dog: Dog[" + super.toString() + "]";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cat cat = new Cat("Whiskers");
+        Dog dog = new Dog("Fido");
+
+        cat.greets();         // Output: Meow
+        dog.greets();         // Output: Woof
+        dog.greets(dog);      // Output: Woooof
+    }
+}
+
+18.
+
+class Person {
+    private String name;
+    private String address;
+
+    // Constructor
+    public Person(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    // Methods to get person information
+    public String getName() { return name; }
+    public String getAddress() { return address; }
+
+    // Method to set address
+    public void setAddress(String address) { this.address = address; }
+
+    // Method to get person information in string format
+    public String toString() {
+        return "Person[name=\"" + name + "\", address=\"" + address + "\"]";
+    }
+}
+
+class Student extends Person {
+    private String program;
+    private int year;
+    private double fee;
+
+    // Constructor
+    public Student(String name, String address, String program, int year, double fee) {
+        super(name, address);
+        this.program = program;
+        this.year = year;
+        this.fee = fee;
+    }
+
+    // Methods to get student information
+    public String getProgram() { return program; }
+    public int getYear() { return year; }
+    public double getFee() { return fee; }
+
+    // Methods to set student information
+    public void setProgram(String program) { this.program = program; }
+    public void setYear(int year) { this.year = year; }
+    public void setFee(double fee) { this.fee = fee; }
+
+    // Method to get student information in string format
+    public String toString() {
+        return "Student[" + super.toString() + ", program=\"" + program + "\", year=" + year + ", fee=" + fee + "]";
+    }
+}
+
+class Staff extends Person {
+    private String school;
+    private double pay;
+
+    // Constructor
+    public Staff(String name, String address, String school, double pay) {
+        super(name, address);
+        this.school = school;
+        this.pay = pay;
+    }
+
+    // Methods to get staff information
+    public String getSchool() { return school; }
+    public double getPay() { return pay; }
+
+    // Methods to set staff information
+    public void setSchool(String school) { this.school = school; }
+    public void setPay(double pay) { this.pay = pay; }
+
+    // Method to get staff information in string format
+    public String toString() {
+        return "Staff[" + super.toString() + ", school=\"" + school + "\", pay=" + pay + "]";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student student = new Student("Alice", "123 Main St", "Computer Science", 2, 10000.0);
+        Staff staff = new Staff("Bob", "456 Elm St", "Engineering", 80000.0);
+
+        System.out.println(student); // Output: Student[Person[name="Alice", address="123 Main St"], program="Computer Science", year=2, fee=10000.0]
+        System.out.println(staff);   // Output: Staff[Person[name="Bob", address="456 Elm St"], school="Engineering", pay=80000.0]
+    }
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+7.Inventory management system having following operations : 1. List of all products 2.
+Display individual product information 3. Purchase 4. Shipping 5. Balance stock 6. Loss
+and Profit calculation.
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Product {
+    String name;
+    double price;
+    int quantity;
+
+    public Product(String name, double price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+}
+
+public class InventoryManagementSystem {
+    private ArrayList<Product> products;
+
+    public InventoryManagementSystem() {
+        this.products = new ArrayList<>();
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void listAllProducts() {
+        System.out.println("List of all products:");
+        for (Product product : products) {
+            System.out.println(product.getName() + " - Price: $" + product.getPrice() + ", Quantity: " + product.getQuantity());
+        }
+    }
+
+    public void displayProductInfo(String productName) {
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(productName)) {
+                System.out.println("Product Information:");
+                System.out.println("Name: " + product.getName());
+                System.out.println("Price: $" + product.getPrice());
+                System.out.println("Quantity: " + product.getQuantity());
+                return;
+            }
+        }
+        System.out.println("Product not found!");
+    }
+
+    public void purchaseProduct(String productName, int quantity) {
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(productName)) {
+                product.quantity += quantity;
+                System.out.println(quantity + " " + productName + "(s) purchased successfully.");
+                return;
+            }
+        }
+        System.out.println("Product not found!");
+    }
+
+    public void shipProduct(String productName, int quantity) {
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(productName)) {
+                if (product.getQuantity() >= quantity) {
+                    product.quantity -= quantity;
+                    System.out.println(quantity + " " + productName + "(s) shipped successfully.");
+                } else {
+                    System.out.println("Insufficient stock for shipping.");
+                }
+                return;
+            }
+        }
+        System.out.println("Product not found!");
+    }
+
+    public void calculateBalanceStock() {
+        int totalQuantity = 0;
+        for (Product product : products) {
+            totalQuantity += product.getQuantity();
+        }
+        System.out.println("Total Balance Stock: " + totalQuantity);
+    }
+
+    public void calculateProfitAndLoss() {
+        double totalPurchaseCost = 0;
+        double totalSalePrice = 0;
+
+        for (Product product : products) {
+            totalPurchaseCost += product.getPrice() * product.getQuantity();
+            totalSalePrice += (product.getPrice() * product.getQuantity()) * 1.2; // Assuming 20% profit margin
+        }
+
+        double profitOrLoss = totalSalePrice - totalPurchaseCost;
+        if (profitOrLoss >= 0) {
+            System.out.println("Profit: $" + profitOrLoss);
+        } else {
+            System.out.println("Loss: $" + Math.abs(profitOrLoss));
+        }
+    }
+
+    public static void main(String[] args) 
+    {
+        Scanner scanner = new Scanner(System.in);
+        InventoryManagementSystem inventorySystem = new InventoryManagementSystem();
+        
+         inventorySystem.addProduct(new Product("Laptop", 999.99, 10));
+    inventorySystem.addProduct(new Product("Smartphone", 499.99, 20));
+    inventorySystem.addProduct(new Product("Headphones", 49.99, 30));
+    inventorySystem.addProduct(new Product("Mouse", 19.99, 40));
+    inventorySystem.addProduct(new Product("Keyboard", 29.99, 35));
+        
+        while (true) {
+            System.out.println("\nInventory Management System Menu:");
+            System.out.println("1. List all products");
+            System.out.println("2. Display individual product information");
+            System.out.println("3. Purchase product");
+            System.out.println("4. Ship product");
+            System.out.println("5. Balance stock");
+            System.out.println("6. Loss and Profit calculation");
+            System.out.println("7. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    inventorySystem.listAllProducts();
+                    break;
+                case 2:
+                    System.out.print("Enter product name: ");
+                    String productName = scanner.nextLine();
+                    inventorySystem.displayProductInfo(productName);
+                    break;
+                case 3:
+                    System.out.print("Enter product name to purchase: ");
+                    String purchaseProductName = scanner.nextLine();
+                    System.out.print("Enter quantity to purchase: ");
+                    int purchaseQuantity = scanner.nextInt();
+                    inventorySystem.purchaseProduct(purchaseProductName, purchaseQuantity);
+                    break;
+                case 4:
+                    System.out.print("Enter product name to ship: ");
+                    String shipProductName = scanner.nextLine();
+                    System.out.print("Enter quantity to ship: ");
+                    int shipQuantity = scanner.nextInt();
+                    inventorySystem.shipProduct(shipProductName, shipQuantity);
+                    break;
+                case 5:
+                    inventorySystem.calculateBalanceStock();
+                    break;
+                case 6:
+                    inventorySystem.calculateProfitAndLoss();
+                    break;
+                case 7:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice! Please enter a number between 1 and 7.");
+            }
+        }
+    }
+}
+
+
+
+8. Banking system having following operations: 1. Create an account 2. Deposit money 3.
+Withdraw money 4. Honor daily withdrawal limit 5. Check the balance 6. Display
+Account information
+
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+class BankAccount {
+    private String accountNumber;
+    private double balance;
+    private double dailyWithdrawalLimit;
+
+    public BankAccount(String accountNumber, double dailyWithdrawalLimit) {
+        this.accountNumber = accountNumber;
+        this.balance = 0;
+        this.dailyWithdrawalLimit = dailyWithdrawalLimit;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit successful. Current balance: $" + balance);
+    }
+
+    public void withdraw(double amount) {
+        if (amount > balance) {
+            System.out.println("Insufficient funds. Withdrawal failed.");
+        } else if (amount > dailyWithdrawalLimit) {
+            System.out.println("Withdrawal amount exceeds daily limit. Withdrawal failed.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawal successful. Current balance: $" + balance);
+        }
+    }
+
+    public void checkBalance() {
+        System.out.println("Current balance: $" + balance);
+    }
+
+    public void displayAccountInfo() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Current Balance: $" + balance);
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+}
+
+public class BankingSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HashMap<String, BankAccount> accounts = new HashMap<>();
+
+        System.out.println("Welcome to the Banking System");
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Create an account");
+            System.out.println("2. Deposit money");
+            System.out.println("3. Withdraw money");
+            System.out.println("4. Check balance");
+            System.out.println("5. Display account information");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter account number: ");
+                    String accountNumber = scanner.next();
+                    System.out.print("Enter daily withdrawal limit: ");
+                    double withdrawalLimit = scanner.nextDouble();
+                    BankAccount account = new BankAccount(accountNumber, withdrawalLimit);
+                    accounts.put(accountNumber, account);
+                    System.out.println("Account created successfully.");
+                    break;
+                case 2:
+                    System.out.print("Enter account number: ");
+                    String depositAccountNumber = scanner.next();
+                    if (!accounts.containsKey(depositAccountNumber)) {
+                        System.out.println("Account not found.");
+                    } else {
+                        BankAccount depositAccount = accounts.get(depositAccountNumber);
+                        System.out.print("Enter amount to deposit: $");
+                        double depositAmount = scanner.nextDouble();
+                        depositAccount.deposit(depositAmount);
+                    }
+                    break;
+                case 3:
+                    System.out.print("Enter account number: ");
+                    String withdrawAccountNumber = scanner.next();
+                    if (!accounts.containsKey(withdrawAccountNumber)) {
+                        System.out.println("Account not found.");
+                    } else {
+                        BankAccount withdrawAccount = accounts.get(withdrawAccountNumber);
+                        System.out.print("Enter amount to withdraw: $");
+                        double withdrawAmount = scanner.nextDouble();
+                        withdrawAccount.withdraw(withdrawAmount);
+                    }
+                    break;
+                case 4:
+                    System.out.print("Enter account number: ");
+                    String checkBalanceAccountNumber = scanner.next();
+                    if (!accounts.containsKey(checkBalanceAccountNumber)) {
+                        System.out.println("Account not found.");
+                    } else {
+                        BankAccount checkBalanceAccount = accounts.get(checkBalanceAccountNumber);
+                        checkBalanceAccount.checkBalance();
+                    }
+                    break;
+                case 5:
+                    System.out.print("Enter account number: ");
+                    String displayAccountNumber = scanner.next();
+                    if (!accounts.containsKey(displayAccountNumber)) {
+                        System.out.println("Account not found.");
+                    } else {
+                        BankAccount displayAccount = accounts.get(displayAccountNumber);
+                        displayAccount.displayAccountInfo();
+                    }
+                    break;
+                case 6:
+                    System.out.println("Thank you for using the Banking System. Goodbye!");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a number from 1 to 6.");
+            }
+        }
+    }
+}
+
+
+
+
